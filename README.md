@@ -2,11 +2,6 @@
 
 A production-ready deployment setup for **Strapi** (headless CMS) on AWS EC2 with containerization, infrastructure-as-code, and database management.
 
-![TypeScript](https://img.shields.io/badge/TypeScript-51.1%25-blue)
-![HCL](https://img.shields.io/badge/HCL-29.4%25-purple)
-![Shell](https://img.shields.io/badge/Shell-17.6%25-green)
-![Docker](https://img.shields.io/badge/Docker-1.9%25-blue?logo=docker)
-
 ---
 
 ## 📋 Table of Contents
@@ -35,7 +30,6 @@ This repository provides a complete infrastructure setup for deploying **Strapi*
 - **Docker & Docker Compose** - Containerized deployment
 - **Terraform (HCL)** - Infrastructure as Code for AWS resources
 - **PostgreSQL** - Production-grade database
-- **TypeScript** - Type-safe application code
 
 Perfect for teams looking to deploy a scalable, maintainable CMS infrastructure on AWS.
 
@@ -50,8 +44,6 @@ Perfect for teams looking to deploy a scalable, maintainable CMS infrastructure 
 | **PostgreSQL** | 15 | Database |
 | **Docker** | Latest | Containerization |
 | **Terraform** | Latest | Infrastructure as Code |
-| **TypeScript** | ^5 | Type safety |
-| **React** | ^18.0.0 | Admin UI |
 
 ---
 
@@ -88,7 +80,6 @@ Before you begin, ensure you have the following installed:
 - **Docker** & **Docker Compose** (for containerized deployment)
 - **Terraform** (for AWS infrastructure provisioning)
 - **AWS CLI** (for AWS interactions)
-- **Git**
 
 ### Verify Installation
 
@@ -98,7 +89,6 @@ npm --version           # Should be v6.0.0+
 docker --version        # Latest version
 docker-compose --version
 terraform --version     # Latest version
-aws --version           # Latest version
 ```
 
 ---
