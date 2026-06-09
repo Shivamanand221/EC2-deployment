@@ -437,59 +437,6 @@ terraform show tfplan | grep user_data
 - AWS CLI configured with credentials
 - VPC and security group access
 
-### Example Terraform Configuration
-
-```hcl
-# variables.tf
-variable "instance_type" {
-  default = "t3.medium"
-}
-
-variable "region" {
-  default = "us-east-1"
-}
-
-# main.tf
-resource "aws_instance" "strapi" {
-  ami           = "ami-0c55b159cbfafe1f0"  # Ubuntu 20.04 LTS
-  instance_type = var.instance_type
-  
-  user_data = file("${path.module}/user_data.sh")
-  
-  vpc_security_group_ids = [aws_security_group.strapi_sg.id]
-  
-  tags = {
-    Name = "Strapi-Server"
-  }
-}
-
-# Security group allowing port 1337
-resource "aws_security_group" "strapi_sg" {
-  name = "strapi-sg"
-  
-  ingress {
-    from_port   = 1337
-    to_port     = 1337
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-```
-
 ---
 
 ## Environment Configuration
@@ -558,18 +505,6 @@ This project uses PostgreSQL 15 as the primary database.
 POSTGRES_DB: strapi
 POSTGRES_USER: strapi
 POSTGRES_PASSWORD: strapi
-```
-
-### Access Database
-
-**From Docker Container:**
-```bash
-docker-compose exec postgres psql -U strapi -d strapi
-```
-
-**From Host (if PostgreSQL installed):**
-```bash
-psql -h localhost -U strapi -d strapi
 ```
 
 ### Database Backups
@@ -674,9 +609,7 @@ Follow the interactive prompts to deploy to Strapi Cloud.
 
 ---
 
-## Troubleshooting
-
-### Common Issues
+## Troubleshooting Common Issues
 
 #### Port 1337 Already in Use
 
@@ -687,19 +620,6 @@ kill -9 <PID>
 
 # Or use a different port
 PORT=3000 npm run develop
-```
-
-#### PostgreSQL Connection Error
-
-```bash
-# Check if Docker Compose services are running
-docker-compose ps
-
-# Check PostgreSQL logs
-docker-compose logs postgres
-
-# Verify environment variables
-cat .env
 ```
 
 #### Module Not Found Errors
@@ -764,62 +684,6 @@ docker-compose logs strapi
 # Check in AWS Console: EC2 > Security Groups > Inbound Rules
 ```
 
-### Getting Help
-
-- **Strapi Docs**: https://docs.strapi.io
-- **Strapi Discord**: https://discord.strapi.io
-- **AWS Documentation**: https://docs.aws.amazon.com
-- **Terraform Docs**: https://www.terraform.io/docs
-- **GitHub Issues**: https://github.com/Shivamanand221/EC2-deployment/issues
-
----
-
-## API Documentation
-
-Once Strapi is running, access:
-
-- **API Documentation**: `http://localhost:1337/documentation`
-- **Admin Panel**: `http://localhost:1337/admin`
-- **GraphQL (if enabled)**: `http://localhost:1337/graphql`
-
----
-
-## Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Commit changes: `git commit -m 'Add amazing feature'`
-4. Push to branch: `git push origin feature/amazing-feature`
-5. Open a Pull Request
-
-### Development Guidelines
-
-- Follow TypeScript best practices
-- Add tests for new features
-- Update documentation
-- Keep commits atomic and descriptive
-- Test Terraform configurations with `terraform validate`
-- Test shell scripts with `shellcheck`
-
----
-
-## License
-
-This project is open source and available under the MIT License.
-
----
-
-## Support
-
-For issues and questions:
-- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/Shivamanand221/EC2-deployment/issues)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/Shivamanand221/EC2-deployment/discussions)
-- 📧 **Email**: Check repository profile
-
----
-
 ## Roadmap
 
 - [ ] Add GitHub Actions CI/CD pipeline
@@ -839,13 +703,3 @@ For issues and questions:
 - [Terraform](https://www.terraform.io/) - Infrastructure as Code
 - [Docker](https://www.docker.com/) - Containerization platform
 - [AWS](https://aws.amazon.com/) - Cloud infrastructure
-
----
-
-<div align="center">
-
-**Made with ❤️ by [Shivamanand221](https://github.com/Shivamanand221)**
-
-⭐ If you found this helpful, please consider giving it a star!
-
-</div>
