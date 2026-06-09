@@ -24,7 +24,6 @@ A production-ready deployment setup for **Strapi** (headless CMS) on AWS EC2 wit
 - [Database Management](#database-management)
 - [Deployment](#deployment)
 - [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
 
 ---
 
